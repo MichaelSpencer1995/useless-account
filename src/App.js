@@ -12,9 +12,12 @@ class App extends Component {
         <LeftContainer>
           <TitleAndDes />
 
-          <CreateAccountForm />
+          <FormsContainer>
+            <CreateAccountForm />
 
-          <LoginForm />
+
+            <LoginForm />
+          </FormsContainer>
         </LeftContainer>
 
         <RightContainer>
@@ -25,7 +28,25 @@ class App extends Component {
   }
 }
 
-const Container = styled.div``
+const Container = styled.div`
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+
+  > * {
+    flex-basis: 48%;
+  }
+`
+
+const FormsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  > * {
+    flex-basis: 48%;
+  }
+`
 const LeftContainer = styled.div``
 const RightContainer = styled.div``
 
