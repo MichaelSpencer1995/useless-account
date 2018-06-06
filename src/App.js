@@ -15,7 +15,6 @@ class App extends Component {
           <FormsContainer>
             <CreateAccountForm />
 
-
             <LoginForm />
           </FormsContainer>
         </LeftContainer>
