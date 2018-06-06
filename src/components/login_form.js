@@ -7,22 +7,29 @@ class LoginForm extends Component {
             <Container>
                 <h3>Login</h3>
 
-                <form>
+                <form
+                    onSubmit={event => this.handleSubmit(event)}
+                    method="POST">
                     <label>Enter Username</label>
                     <input placeholder="username"/>
                     <label>Enter Password</label>
                     <input placeholder="password"/>
-                    <button>Login</button>
+                    {/* <button>Login</button> */}
+                    <input type="submit" />
                 </form>
             </Container>
         )
     }
 
-    onSubmit() {
+    handleSubmit(e) {
+        e.preventDefault()
+        console.log('wat')
+        
         fetch('/login', {
             method: 'post',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({
+                name: 'x'
             })
           })
         .then(res => {
