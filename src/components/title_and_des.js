@@ -1,12 +1,11 @@
-import React from 'react';
+import React from 'react'
+import styled from 'styled-components'
 
-class TitleAndDescription extends Component {
-  render() {
+const TitleAndDescription = () => {
     return (
       <div>
       </div>
-    );
-  }
+    )
 }
 
-export default TitleAndDescription;
+export default TitleAndDescription
