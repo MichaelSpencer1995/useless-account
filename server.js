@@ -18,7 +18,11 @@ app.get('/', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-    alert(req.body.name)
+    console.log(req.body.username, req.body.password)
+})
+
+app.post('/create-account', (req, res) => {
+    console.log(req.body.username, req.body.password, req.body.motto)
 })
 
 const port = process.env.PORT || 8080

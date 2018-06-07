@@ -2,6 +2,15 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 class LoginForm extends Component {
+    constructor(){
+        super()
+
+        this.state = {
+            usernameValue: '',
+            passwordValue: ''
+        }
+    }
+
     render() {
         return (
             <Container>
@@ -9,31 +18,51 @@ class LoginForm extends Component {
 
                 <form
                     onSubmit={event => this.handleSubmit(event)}
-                    method="POST">
+                    method="POST"
+                >
                     <label>Enter Username</label>
-                    <input placeholder="username"/>
+                    <input 
+                        value={this.state.name}
+                        onChange={(this.updateInputValueInState.bind(this))}
+                        name="usernameValue"
+                        placeholder="username"
+                    />
+
                     <label>Enter Password</label>
-                    <input placeholder="password"/>
-                    {/* <button>Login</button> */}
-                    <input type="submit" />
+                    <input
+                        value={this.state.name}
+                        onChange={(this.updateInputValueInState.bind(this))} 
+                        name="passwordValue"
+                        placeholder="password"
+                    />
+
+                    <button>Login</button>
                 </form>
             </Container>
         )
     }
 
-    handleSubmit(e) {
-        e.preventDefault()
-        console.log('wat')
+    updateInputValueInState(e) {
+        let change = {}
+    
+        change[e.target.name] = e.target.value
+        this.setState(change)
+    }
+
+    handleSubmit(event) {
+        event.preventDefault()
+        console.log(this.state)
         
         fetch('/login', {
             method: 'post',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({
-                name: 'x'
+                username: this.state.usernameValue,
+                password: this.state.passwordValue
             })
           })
         .then(res => {
-
+            console.log('success')
         })
         .catch(res => {
             console.log('fail')
