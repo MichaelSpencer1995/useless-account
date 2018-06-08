@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const mongoose = require('mongoose')
 
-mongoose.connect("mongodb+srv://kay:Hhh440826hh_@cluster0.mongodb.net/test")
+mongoose.connect(`mongodb+srv://${ process.env.MONGODBUSER }:${ process.env.MONGODBPASS }@cluster0-yhj1k.mongodb.net/test?retryWrites=true`)
 
 mongoose.connection.once('open', () => {
     console.log('connection made!')
