@@ -4,10 +4,15 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const mongoose = require('mongoose')
 
-// Generate test SMTP service account from ethereal.email
-// Only needed if you don't have a real mail account for testing
+mongoose.connect("mongodb+srv://kay:Hhh440826hh_@cluster0.mongodb.net/test")
 
+mongoose.connection.once('open', () => {
+    console.log('connection made!')
+}).on('error', error => {
+    console.log('Connection error: ', error)
+})
 
 app.use(require("body-parser").json())
 
@@ -18,11 +23,20 @@ app.get('/', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-    console.log(req.body.username, req.body.password)
+    const data = {
+        username: req.body.username,
+        password: req.body.password
+    }
+    console.log(data)
 })
 
 app.post('/create-account', (req, res) => {
-    console.log(req.body.username, req.body.password, req.body.motto)
+    const data = {
+        username: req.body.username,
+        password: req.body.password,
+        motto: req.body.motto
+    }
+    console.log(data)
 })
 
 const port = process.env.PORT || 8080
