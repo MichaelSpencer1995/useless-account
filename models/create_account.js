@@ -1,4 +1,5 @@
-import mongoose, { Schema } from 'mongoose'
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 //Create schem nd model
 
@@ -10,4 +11,4 @@ const CreateAccountSchema = new Schema({
 
 const CreateAccount = mongoose.model('CreateAccount', CreateAccountSchema)
 
-export default CreateAccount
+module.exports = CreateAccount
