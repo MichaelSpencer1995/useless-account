@@ -83,14 +83,23 @@ class CreateAccountForm extends Component {
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    // justify-content: space-between;
+
+    @media(max-width: 1040px) {
+        margin-top: 35px;
+        border-top: #cdcdcd 1px solid;
+        h3 {
+            padding-top: 20px;
+        }
+    }
 
     form {
         width: 100%;
         display: flex;
         flex-direction: column;
+
         button {
             width: 130px;
+            margin-bottom: 60px;
         }
     }
 `
