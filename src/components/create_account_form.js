@@ -86,9 +86,10 @@ const Container = styled.div`
 
     @media(max-width: 1040px) {
         margin-top: 35px;
-        border-top: #cdcdcd 1px solid;
+        border-top: #d0d0d0 1px solid;
+
         h3 {
-            padding-top: 20px;
+            padding-top: 12px;
         }
     }
 

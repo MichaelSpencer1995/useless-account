@@ -74,9 +74,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  > * {
-    // flex-basis: 48%;
+  
+  @media(max-width: 1040px) {
+    padding: 50px 90px;
   }
 `
 
@@ -85,9 +85,11 @@ const FormsContainer = styled.div`
   width: 100%;
   justify-content: space-between;
   margin-top: 38px;
+
   @media(max-width: 1040px) {
     flex-direction: column;
   }
+
   > * {
     flex-basis: 47.5%;
   }
