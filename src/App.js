@@ -6,6 +6,12 @@ import AccountsList from './components/accounts_list'
 import styled from 'styled-components'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    
+
+  }
+
   render() {
     return (
       <Container>
@@ -13,28 +19,27 @@ class App extends Component {
           <TitleAndDes />
 
           <FormsContainer>
-            <CreateAccountForm />
-
             <LoginForm />
+
+            <CreateAccountForm />
           </FormsContainer>
         </LeftContainer>
 
-        <RightContainer>
-          <AccountsList />
-        </RightContainer>
+        <AccountsList />
       </Container>
     )
   }
 }
 
 const Container = styled.div`
-  width: 80%;
+  width: 45%;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
+  margin-top: 50px;
+  // display: flex;
+  // justify-content: space-between;
 
   > * {
-    flex-basis: 48%;
+    // flex-basis: 48%;
   }
 `
 
@@ -43,7 +48,7 @@ const FormsContainer = styled.div`
   justify-content: space-between;
 
   > * {
-    flex-basis: 48%;
+    flex-basis: 47.5%;
   }
 `
 const LeftContainer = styled.div``

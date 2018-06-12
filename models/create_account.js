@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-//Create schem nd model
+//Create schem and model
 
 const CreateAccountSchema = new Schema({
     username: String,
@@ -9,6 +9,6 @@ const CreateAccountSchema = new Schema({
     motto: String
 })
 
-const CreateAccount = mongoose.model('CreateAccount', CreateAccountSchema)
+const CreateAccount = mongoose.model('createaccount', CreateAccountSchema)
 
 module.exports = CreateAccount

@@ -73,12 +73,15 @@ class LoginForm extends Component {
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    // justify-content: space-between;
 
     form {
         width: 100%;
         display: flex;
         flex-direction: column;
+        button {
+            width: 66px;
+        }
     }
 `
 

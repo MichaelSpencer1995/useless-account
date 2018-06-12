@@ -7,14 +7,15 @@ const TitleAndDescription = () => {
             <h1>Useless Account</h1>
 
             <p>
-                Useless Accout is a simple app I made using the MERN stack,
-                below, you can create an account with an optional motto to
-                be added to the list of accounts.
+                Useless Account is a simple app I made using the MERN stack,
+                below, you can scroll through, and create, useless accounts!
             </p>
         </Container>
     )   
 }
 
-const Container = styled.div``
+const Container = styled.div`
+    // width: 75%;
+`
 
 export default TitleAndDescription
