@@ -9,32 +9,51 @@ class App extends Component {
   constructor(props) {
     super(props)
     
+    this.state = {
+      loginView: true,
+      loadingView: false,
+      accountsView: false
 
+      // loginView: false,
+      // loadingView: false,
+      // accountsView: true
+    }
   }
 
   render() {
-    return (
-      <Container>
-        <LeftContainer>
+    if(this.state.loginView) {
+      return (
+        <Container>
+            <TitleAndDes />
+
+            <FormsContainer>
+              <LoginForm />
+
+              <CreateAccountForm />
+            </FormsContainer>
+        </Container>
+      )
+    }
+    if(this.state.accountsView) {
+      return (
+        <Container>
           <TitleAndDes />
-
-          <FormsContainer>
-            <LoginForm />
-
-            <CreateAccountForm />
-          </FormsContainer>
-        </LeftContainer>
-
-        <AccountsList />
-      </Container>
-    )
+          
+          <AccountsList />
+        </Container>
+      )
+    }
   }
 }
 
 const Container = styled.div`
-  width: 45%;
+  width: 60%;
+  height: 100vh;
+  background: white;
   margin: 0 auto;
-  margin-top: 50px;
+  padding: 50px 110px;
+  box-sizing: border-box;
+  padding-bottom: 0;
   // display: flex;
   // justify-content: space-between;
 
@@ -46,6 +65,7 @@ const Container = styled.div`
 const FormsContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: 38px;
 
   > * {
     flex-basis: 47.5%;
@@ -53,5 +73,6 @@ const FormsContainer = styled.div`
 `
 const LeftContainer = styled.div``
 const RightContainer = styled.div``
+
 
 export default App
