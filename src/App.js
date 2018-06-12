@@ -78,6 +78,10 @@ const Container = styled.div`
   @media(max-width: 1040px) {
     padding: 50px 90px;
   }
+  @media(max-width: 770px) {
+    padding: 30px 30px;
+    width: 80%;
+  }
 `
 
 const FormsContainer = styled.div`

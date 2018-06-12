@@ -5,6 +5,10 @@ body {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
 }
 
+input {
+  -webkit-appearance: none;
+}
+
 h1, h3, label {
   color: #333;
 }

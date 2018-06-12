@@ -14,8 +14,6 @@ const TitleAndDescription = () => {
     )   
 }
 
-const Container = styled.div`
-    // width: 75%;
-`
+const Container = styled.div``
 
 export default TitleAndDescription
