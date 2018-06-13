@@ -23,18 +23,14 @@ class LoginForm extends Component {
                     <label>Enter Username</label>
                     <input 
                         value={this.state.name}
-                        onChange={(this.updateInputValueInState.bind(this))}
-                        name="usernameValue"
-                        placeholder="username"
-                    />
+                        onChange={event => {this.updateInputValueInState(event)}}
+                        placeholder="username" />
 
                     <label>Enter Password</label>
                     <input
                         value={this.state.name}
-                        onChange={(this.updateInputValueInState.bind(this))} 
-                        name="passwordValue"
-                        placeholder="password"
-                    />
+                        onChange={event => {this.updateInputValueInState(event)}} 
+                        placeholder="password" />
 
                     <button>Login</button>
                 </form>
