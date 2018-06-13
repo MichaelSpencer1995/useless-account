@@ -12,8 +12,7 @@ class CreateAccountForm extends Component {
             mottoValue: '',
             usernameValid: true,
             passwordValid: true,
-            confirmPasswordValid: true,
-            mottoValid: true
+            confirmPasswordValid: true
         }
     }
     
@@ -48,6 +47,7 @@ class CreateAccountForm extends Component {
                         </ErrorMessage>
                     </LabelErrorMessageContainer>
                     <input
+                        type="password" 
                         placeholder="password"
                         onChange={event => this.updateInputValueInState(event, 'password')}
                         name="passwordValue" />
@@ -61,18 +61,12 @@ class CreateAccountForm extends Component {
                         </ErrorMessage>
                     </LabelErrorMessageContainer>
                     <input
-                        placeholder="password"
+                        type="password" 
+                        placeholder="re-type password"
                         onChange={event => this.updateInputValueInState(event, 'confirmPassword')}
                         name="confirmPasswordValue" />
 
-                    <LabelErrorMessageContainer>
-                        <label>Motto</label>
-
-                        <ErrorMessage
-                            valid={this.state.mottoValid}>
-                            *Motto can not be left blank
-                        </ErrorMessage>
-                    </LabelErrorMessageContainer>
+                    <label>Motto(optional)</label>
                     <input
                         placeholder="motto"
                         onChange={event => this.updateInputValueInState(event, 'motto')}
@@ -107,7 +101,7 @@ class CreateAccountForm extends Component {
                     break;
 
             case 'confirmMotto':
-                this.setState(change, () => this.validateMotto())
+                this.setState(change)
                     break;
         }
     }
@@ -158,13 +152,10 @@ class CreateAccountForm extends Component {
         }
     }
 
-    updateMottoValidity() {}
-
     validateForm() {
         const formValid = this.state.usernameValid &&
                           this.state.passwordValid &&
-                          this.state.confirmPasswordValid &&
-                          this.state.mottoValid
+                          this.state.confirmPasswordValid
 
         if(formValid) {
             return true
