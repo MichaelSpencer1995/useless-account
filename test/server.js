@@ -17,13 +17,6 @@ mongoose.connect('mongodb://localhost/testaroo')
 
 mongoose.connection.once('open', () => {
     console.log('connection made!')
-    //get full list of usernames
-
-    User.find({}, () => {
-    }).then(result => {
-        users = result
-        console.log(users)
-    })
 }).on('error', error => {
     console.log('Connection error: ', error)
 })
@@ -58,10 +51,13 @@ app.post('/create-account', (req, res) => {
     res.sendStatus(200)
 })
 
-app.post('/check-user-name-validity', (req, res) => {
-    const username = req.body.username
-    console.log(username)
-    res.sendStatus(200)
+app.post('/get-users-from-database', (req, res) => {
+    //get full list of users from database
+    User.find({})
+    .then(result => {
+        users = result
+        res.send(users)
+    })
 })
 
 const port = process.env.PORT || 8080

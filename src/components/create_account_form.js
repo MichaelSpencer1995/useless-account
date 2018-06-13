@@ -35,9 +35,7 @@ class CreateAccountForm extends Component {
                     </LabelErrorMessageContainer>
                     <input 
                         placeholder="username"
-                        onChange={event => {
-                            this.updateInputValueInState(event, true)
-                        }}
+                        onChange={event => this.updateInputValueInState(event) }
                         name="usernameValue" />
 
                     <LabelErrorMessageContainer>
@@ -93,21 +91,7 @@ class CreateAccountForm extends Component {
         this.setState(change)
     }
 
-    testUsernameAgainstDatabase() {
-        fetch('/check-user-name-validity', {
-            method: 'post',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({
-                username: this.state.usernameValue,
-            })
-          })
-        .then(res => {
-            console.log('success')
-        })
-        .catch(res => {
-            console.log('stopped after 5')
-        })
-    }
+    
 
     updatePasswordValidity() {}
 

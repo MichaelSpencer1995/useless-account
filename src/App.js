@@ -5,6 +5,7 @@ import LoginForm from './components/login_form'
 import AccountsList from './components/accounts_list'
 import styled from 'styled-components'
 import Loader from 'react-loader-spinner'
+let users
 
 class App extends Component {
   constructor(props) {
@@ -15,6 +16,21 @@ class App extends Component {
       loadingView: false,
       accountsView: false
     }
+  }
+  
+  componentWillMount() {
+    fetch('/get-users-from-database', {
+        method: 'post',
+        headers: {'Content-Type':'application/json'}
+      })
+    .then(res => res.json())
+    .then(data => {
+        users = data
+        console.log(users)
+    })
+    .catch(res => {
+        alert('something went wrong, refresh the page and try again')
+    })
   }
 
   render() {
