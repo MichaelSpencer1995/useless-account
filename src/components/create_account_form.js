@@ -8,6 +8,7 @@ class CreateAccountForm extends Component {
         this.state = {
             usernameValue: '',
             passwordValue: '',
+            confirmPasswordValue: '',
             mottoValue: ''
         }
     }
@@ -19,31 +20,30 @@ class CreateAccountForm extends Component {
 
                 <form
                     onSubmit={event => this.handleSubmit(event)}
-                    method="POST"
-                >
+                    method="POST">
                     <label>Create Username</label>
                     <input 
                         placeholder="username"
-                        value={this.state.name}
-                        onChange={(this.updateInputValueInState.bind(this))} 
-                        name="usernameValue"
-                    />
+                        onChange={event => this.updateInputValueInState(event)} 
+                        name="usernameValue" />
 
                     <label>Create Password</label>
                     <input
                         placeholder="password"
-                        value={this.state.name}
-                        onChange={(this.updateInputValueInState.bind(this))} 
-                        name="passwordValue"
-                    />
-                    
+                        onChange={event => this.updateInputValueInState(event)}
+                        name="passwordValue" />
+
+                    <label>Confirm Password</label>
+                    <input
+                        placeholder="password"
+                        onChange={event => this.updateInputValueInState(event)} 
+                        name="confirmPasswordValue" />
+
                     <label>Create Motto(optional)</label>
                     <input
                         placeholder="motto"
-                        value={this.state.name}
-                        onChange={(this.updateInputValueInState.bind(this))} 
-                        name="mottoValue"    
-                    />
+                        onChange={event => this.updateInputValueInState(event)}
+                        name="mottoValue" />
                     
                     <button>Create Account</button>
                 </form>

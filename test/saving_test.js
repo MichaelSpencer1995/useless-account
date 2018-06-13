@@ -1,17 +1,14 @@
 const assert = require('assert')
 const CreateAccount = require('../models/create_account')
 
-describe('saving create account', () => {
-    it('saved new account to database', done => {
-        let account67 = new CreateAccount({
-            username: 'Sunlsssazypitufo',
-            password: 'spssssartan117',
-            motto: 20
-        })
-
-        account67.save().then(() => {
-            assert(account67.isNew === false)
-            done()
-        })
+const SaveAccountToDb = (newUser) => {
+    let user = new CreateAccount({
+        username: newUser.username,
+        password: newUser.password,
+        motto: newUser.motto
     })
-})
+
+    user.save().then(console.log('saved')).catch('something went wrong')
+}
+
+module.exports = SaveAccountToDb
