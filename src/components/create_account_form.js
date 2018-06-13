@@ -10,6 +10,7 @@ class CreateAccountForm extends Component {
             passwordValue: '',
             confirmPasswordValue: '',
             mottoValue: '',
+            themeValue: 'Volvo',
             usernameValid: true,
             passwordValid: true,
             confirmPasswordValid: true
@@ -69,9 +70,19 @@ class CreateAccountForm extends Component {
                     <label>Motto(optional)</label>
                     <input
                         placeholder="motto"
-                        onChange={event => this.updateInputValueInState(event, 'motto')}
+                        onChange={event => this.updateInputValueInState(event)}
                         name="mottoValue" />
-                    
+
+                    <label>Theme</label>
+                    <select
+                        onChange={event => this.updateInputValueInState(event)}
+                        name="themeValue">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="mercedes">Mercedes</option>
+                        <option value="audi">Audi</option>
+                    </select>
+
                     <button>Create Account</button>
                 </form>
             </Container>
@@ -90,19 +101,19 @@ class CreateAccountForm extends Component {
         switch(input) {
             case 'username':
                 this.setState(change, () => this.checkIfUsernameIsAvailable())
-                    break;
+                    break
 
             case 'password':
                 this.setState(change, () => this.validatePassword())
-                    break;
+                    break
 
             case 'confirmPassword':
                 this.setState(change, () => this.validateConfirmPassword())
-                    break;
+                    break
 
-            case 'confirmMotto':
+            default:
                 this.setState(change)
-                    break;
+                    break
         }
     }
 
@@ -181,7 +192,8 @@ class CreateAccountForm extends Component {
             body: JSON.stringify({
                 username: this.state.usernameValue,
                 password: this.state.passwordValue,
-                motto: this.state.mottoValue
+                motto: this.state.mottoValue,
+                theme: this.state.themeValue
             })
           })
         .then(res => {

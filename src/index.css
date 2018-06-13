@@ -39,7 +39,7 @@ label {
   left: 2px;
 }
 
-input {
+input, select {
   margin-top: 3px;
   padding: .5em;
   border-radius: 4px;
@@ -57,6 +57,8 @@ input::-moz-placeholder {
 input::-ms-input-placeholder {
   color: #bbb;
 }
+
+
 
 button {
   color: #fff;

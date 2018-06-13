@@ -41,7 +41,8 @@ app.post('/create-account', (req, res) => {
     const data = {
         username: req.body.username,
         password: req.body.password,
-        motto: req.body.motto
+        motto: req.body.motto,
+        theme: req.body.theme
     }
     
     console.log(data)
