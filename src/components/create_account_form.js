@@ -19,7 +19,6 @@ class CreateAccountForm extends Component {
     
     
     render() {
-        
         return (
             <Container>
                 <h3>Create Account</h3>
@@ -37,7 +36,7 @@ class CreateAccountForm extends Component {
                     </LabelErrorMessageContainer>
                     <input 
                         placeholder="username"
-                        onChange={event => this.updateInputValueInState(event, true)}
+                        onChange={event => this.updateInputValueInState(event, 'username')}
                         name="usernameValue" />
 
                     <LabelErrorMessageContainer>
@@ -45,12 +44,12 @@ class CreateAccountForm extends Component {
 
                         <ErrorMessage
                             valid={this.state.passwordValid}>
-                            *Password is not long enough
+                            *Password is too short
                         </ErrorMessage>
                     </LabelErrorMessageContainer>
                     <input
                         placeholder="password"
-                        onChange={event => this.updateInputValueInState(event)}
+                        onChange={event => this.updateInputValueInState(event, 'password')}
                         name="passwordValue" />
 
                     <LabelErrorMessageContainer>
@@ -63,7 +62,7 @@ class CreateAccountForm extends Component {
                     </LabelErrorMessageContainer>
                     <input
                         placeholder="password"
-                        onChange={event => this.updateInputValueInState(event)} 
+                        onChange={event => this.updateInputValueInState(event, 'confirmPassword')}
                         name="confirmPasswordValue" />
 
                     <LabelErrorMessageContainer>
@@ -76,7 +75,7 @@ class CreateAccountForm extends Component {
                     </LabelErrorMessageContainer>
                     <input
                         placeholder="motto"
-                        onChange={event => this.updateInputValueInState(event)}
+                        onChange={event => this.updateInputValueInState(event, 'motto')}
                         name="mottoValue" />
                     
                     <button>Create Account</button>
@@ -85,22 +84,36 @@ class CreateAccountForm extends Component {
         )
     }
 
-    updateInputValueInState(e, isUsernameInput) {
+    componentWillMount() {
+        window.usernames = this.props.users.map(user => user.username.toLowerCase())
+    }
+
+    updateInputValueInState(e, input) {
         let change = {}
     
         change[e.target.name] = e.target.value
-        if(isUsernameInput){
-            this.setState(change, () => this.checkIfUsernameIsAvailable())
-        } else {
-            this.setState(change)
-        }
+    
+        switch(input) {
+            case 'username':
+                this.setState(change, () => this.checkIfUsernameIsAvailable())
+                    break;
 
+            case 'password':
+                this.setState(change, () => this.validatePassword())
+                    break;
+
+            case 'confirmPassword':
+                this.setState(change, () => this.validateConfirmPassword())
+                    break;
+
+            case 'confirmMotto':
+                this.setState(change, () => this.validateMotto())
+                    break;
+        }
     }
 
     checkIfUsernameIsAvailable() {
-        //probably should be pulled out
-        const usernames = this.props.users.map(user => user.username.toLowerCase())
-        const usernameUnavailable = usernames.indexOf(this.state.usernameValue.toLowerCase()) !== -1
+        const usernameUnavailable = window.usernames.indexOf(this.state.usernameValue.toLowerCase()) !== -1
 
         if(usernameUnavailable) {
             console.log(this.state.usernameValue)
@@ -115,9 +128,35 @@ class CreateAccountForm extends Component {
         }
     }
 
-    updatePasswordValidity() {}
+    validatePassword() {
+        const confirmPasswordFieldNotBlank = this.state.confirmPasswordValue !== ''
+        const passwordsMatch = this.state.passwordValue === this.state.confirmPasswordValue
+        const passwordLongEnough = this.state.passwordValue.length >= 5
+        
+        if(confirmPasswordFieldNotBlank) {
+            if(passwordsMatch) {
+                this.setState({ confirmPasswordValid: true })
+            } else {
+                this.setState({ confirmPasswordValid: false })
+            }
+        }
 
-    updatePasswordConfirmationValidity() {}
+        if(passwordLongEnough) {
+            this.setState({ passwordValid: true })
+        } else {
+            this.setState({ passwordValid: false })
+        }
+    }
+
+    validateConfirmPassword() {
+        const passwordsMatch = this.state.passwordValue === this.state.confirmPasswordValue
+
+        if(passwordsMatch) {
+            this.setState({ confirmPasswordValid: true })
+        } else {
+            this.setState({ confirmPasswordValid: false })
+        }
+    }
 
     updateMottoValidity() {}
 
@@ -130,6 +169,7 @@ class CreateAccountForm extends Component {
         if(formValid) {
             return true
         }
+        alert('please fix the indicated fields')
         return false
     }
 
