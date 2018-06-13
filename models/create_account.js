@@ -6,7 +6,7 @@ const Schema = mongoose.Schema
 const CreateAccountSchema = new Schema({
     username: String,
     password: String,
-    motto: String
+    motto: Number,
 })
 
 const CreateAccount = mongoose.model('createaccount', CreateAccountSchema)

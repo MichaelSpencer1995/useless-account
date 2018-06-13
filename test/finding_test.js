@@ -8,7 +8,7 @@ describe('finding records', () => {
         account67 = new CreateAccount({
             username: 'Sunlsssazypitufo',
             password: 'spssssartan117',
-            motto: ''
+            motto: 5036
         })
     
         account67.save().then(() => {

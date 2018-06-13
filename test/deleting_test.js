@@ -8,7 +8,7 @@ describe('deleting records', () => {
         account67 = new CreateAccount({
             username: 'Sunlsssazypitufo',
             password: 'spssssartan117',
-            motto: ''
+            motto: 5323
         })
     
         account67.save().then(() => {
