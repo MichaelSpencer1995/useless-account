@@ -18,8 +18,8 @@ class LoginForm extends Component {
 
                 <form
                     onSubmit={event => this.handleSubmit(event)}
-                    method="POST"
-                >
+                    method="POST">
+
                     <label>Enter Username</label>
                     <input 
                         value={this.state.name}

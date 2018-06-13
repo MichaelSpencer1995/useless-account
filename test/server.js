@@ -6,6 +6,8 @@ const bodyParser = require('body-parser')
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const mongoose = require('mongoose')
 const SaveAccountToDb = require('./saving_test')
+const User = require('../models/user')
+let users
 //Es6 promises, don't know if this is nesesary
 mongoose.Promise = global.Promise
 
@@ -15,6 +17,13 @@ mongoose.connect('mongodb://localhost/testaroo')
 
 mongoose.connection.once('open', () => {
     console.log('connection made!')
+    //get full list of usernames
+
+    User.find({}, () => {
+    }).then(result => {
+        users = result
+        console.log(users)
+    })
 }).on('error', error => {
     console.log('Connection error: ', error)
 })
@@ -41,8 +50,18 @@ app.post('/create-account', (req, res) => {
         password: req.body.password,
         motto: req.body.motto
     }
-    SaveAccountToDb(data)
+    
     console.log(data)
+    
+    SaveAccountToDb(data)
+    
+    res.sendStatus(200)
+})
+
+app.post('/check-user-name-validity', (req, res) => {
+    const username = req.body.username
+    console.log(username)
+    res.sendStatus(200)
 })
 
 const port = process.env.PORT || 8080

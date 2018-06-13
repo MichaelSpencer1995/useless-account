@@ -2,12 +2,12 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 //Create schem and model
-const CreateAccountSchema = new Schema({
+const UserSchema = new Schema({
     username: String,
     password: String,
     motto: String,
 })
 
-const CreateAccount = mongoose.model('createaccount', CreateAccountSchema)
+const User = mongoose.model('user', UserSchema)
 
-module.exports = CreateAccount
+module.exports = User

@@ -14,14 +14,6 @@ class App extends Component {
       loginView: true,
       loadingView: false,
       accountsView: false
-
-      // loginView: false,
-      // loadingView: false,
-      // accountsView: true
-
-      // loginView: false,
-      // loadingView: true,
-      // accountsView: false
     }
   }
 
@@ -34,7 +26,22 @@ class App extends Component {
             <FormsContainer>
               <LoginForm />
 
-              <CreateAccountForm />
+              <CreateAccountForm 
+                showLoadingView = {() => {
+                  this.setState({
+                    loginView: false,
+                    loadingView: true,
+                    accountsView: false
+                  })
+                }}
+                showAccountsView = {() => {
+                  this.setState({
+                    loginView: true,
+                    loadingView: false,
+                    accountsView: false
+                  })
+                }} 
+              />
             </FormsContainer>
         </Container>
       )
@@ -53,7 +60,7 @@ class App extends Component {
         <Container>
           <Loader
             type="TailSpin"
-            color="#4caf50"
+            color="#03a9f4"
             height="100"
             width="100"
           />   

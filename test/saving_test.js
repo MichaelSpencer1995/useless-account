@@ -1,8 +1,8 @@
 const assert = require('assert')
-const CreateAccount = require('../models/create_account')
+const User = require('../models/user')
 
 const SaveAccountToDb = (newUser) => {
-    let user = new CreateAccount({
+    let user = new User({
         username: newUser.username,
         password: newUser.password,
         motto: newUser.motto

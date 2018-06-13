@@ -6,7 +6,7 @@ const TitleAndDescription = () => {
         <Container>
             <h1>Useless Account</h1>
 
-            <p>
+            <p style={{ marginTop: '10px' }}>
                 Useless Account is a simple app I made using the MERN stack,
                 below, you can scroll through, and create, useless accounts!
             </p>

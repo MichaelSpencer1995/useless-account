@@ -9,7 +9,11 @@ class CreateAccountForm extends Component {
             usernameValue: '',
             passwordValue: '',
             confirmPasswordValue: '',
-            mottoValue: ''
+            mottoValue: '',
+            usernameValid: true,
+            passwordValid: true,
+            confirmPasswordValid: true,
+            mottoValid: true
         }
     }
 
@@ -21,25 +25,55 @@ class CreateAccountForm extends Component {
                 <form
                     onSubmit={event => this.handleSubmit(event)}
                     method="POST">
-                    <label>Create Username</label>
+                    <LabelErrorMessageContainer>
+                        <label>Create Username</label>
+
+                        <ErrorMessage
+                            valid={this.state.usernameValid}>
+                            *Username is taken
+                        </ErrorMessage>
+                    </LabelErrorMessageContainer>
                     <input 
                         placeholder="username"
-                        onChange={event => this.updateInputValueInState(event)} 
+                        onChange={event => {
+                            this.updateInputValueInState(event, true)
+                        }}
                         name="usernameValue" />
 
-                    <label>Create Password</label>
+                    <LabelErrorMessageContainer>
+                        <label>Password</label>
+
+                        <ErrorMessage
+                            valid={this.state.passwordValid}>
+                            *Password is not long enough
+                        </ErrorMessage>
+                    </LabelErrorMessageContainer>
                     <input
                         placeholder="password"
                         onChange={event => this.updateInputValueInState(event)}
                         name="passwordValue" />
 
-                    <label>Confirm Password</label>
+                    <LabelErrorMessageContainer>
+                        <label>Confirm password</label>
+
+                        <ErrorMessage
+                            valid={this.state.confirmPasswordValid}>
+                            *Passwords do not match
+                        </ErrorMessage>
+                    </LabelErrorMessageContainer>
                     <input
                         placeholder="password"
                         onChange={event => this.updateInputValueInState(event)} 
                         name="confirmPasswordValue" />
 
-                    <label>Create Motto(optional)</label>
+                    <LabelErrorMessageContainer>
+                        <label>Motto</label>
+
+                        <ErrorMessage
+                            valid={this.state.mottoValid}>
+                            *Motto can not be left blank
+                        </ErrorMessage>
+                    </LabelErrorMessageContainer>
                     <input
                         placeholder="motto"
                         onChange={event => this.updateInputValueInState(event)}
@@ -55,12 +89,54 @@ class CreateAccountForm extends Component {
         let change = {}
     
         change[e.target.name] = e.target.value
+        
         this.setState(change)
+    }
+
+    testUsernameAgainstDatabase() {
+        fetch('/check-user-name-validity', {
+            method: 'post',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({
+                username: this.state.usernameValue,
+            })
+          })
+        .then(res => {
+            console.log('success')
+        })
+        .catch(res => {
+            console.log('stopped after 5')
+        })
+    }
+
+    updatePasswordValidity() {}
+
+    updatePasswordConfirmationValidity() {}
+
+    updateMottoValidity() {}
+
+    validateForm() {
+        const formValid = this.state.usernameValid &&
+                          this.state.passwordValid &&
+                          this.state.confirmPasswordValid &&
+                          this.state.mottoValid
+
+        if(formValid) {
+            return true
+        }
+        return false
     }
 
     handleSubmit(event) {
         event.preventDefault()
-        console.log(this.state)
+        
+        const valid = this.validateForm()
+
+        if(!valid) {
+            return
+        }
+        
+        this.props.showLoadingView()
         
         fetch('/create-account', {
             method: 'post',
@@ -72,7 +148,7 @@ class CreateAccountForm extends Component {
             })
           })
         .then(res => {
-            console.log('success')
+            this.props.showAccountsView()
         })
         .catch(res => {
             console.log('fail')
@@ -103,6 +179,19 @@ const Container = styled.div`
             margin-bottom: 60px;
         }
     }
+`
+
+const LabelErrorMessageContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+`
+
+const ErrorMessage = styled.p`
+    font-size: 12px;
+    font-weight: 400;
+    color: #d01a1a;
+    display: ${({ valid }) => valid ? "none" : "block" };
 `
 
 export default CreateAccountForm
