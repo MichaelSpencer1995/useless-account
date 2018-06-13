@@ -4,7 +4,7 @@ import styled from 'styled-components'
 class CreateAccountForm extends Component {
     constructor(){
         super()
-
+        
         this.state = {
             usernameValue: '',
             passwordValue: '',
@@ -16,8 +16,10 @@ class CreateAccountForm extends Component {
             mottoValid: true
         }
     }
-
+    
+    
     render() {
+        
         return (
             <Container>
                 <h3>Create Account</h3>
@@ -35,7 +37,7 @@ class CreateAccountForm extends Component {
                     </LabelErrorMessageContainer>
                     <input 
                         placeholder="username"
-                        onChange={event => this.updateInputValueInState(event) }
+                        onChange={event => this.updateInputValueInState(event, true)}
                         name="usernameValue" />
 
                     <LabelErrorMessageContainer>
@@ -83,15 +85,35 @@ class CreateAccountForm extends Component {
         )
     }
 
-    updateInputValueInState(e) {
+    updateInputValueInState(e, isUsernameInput) {
         let change = {}
     
         change[e.target.name] = e.target.value
-        
-        this.setState(change)
+        if(isUsernameInput){
+            this.setState(change, () => this.checkIfUsernameIsAvailable())
+        } else {
+            this.setState(change)
+        }
+
     }
 
-    
+    checkIfUsernameIsAvailable() {
+        //probably should be pulled out
+        const usernames = this.props.users.map(user => user.username.toLowerCase())
+        const usernameUnavailable = usernames.indexOf(this.state.usernameValue.toLowerCase()) !== -1
+
+        if(usernameUnavailable) {
+            console.log(this.state.usernameValue)
+            this.setState({
+                usernameValid: false
+            })
+        } else {
+            console.log(this.state.usernameValue)
+            this.setState({
+                usernameValid: true
+            })
+        }
+    }
 
     updatePasswordValidity() {}
 

@@ -12,8 +12,8 @@ class App extends Component {
     super(props)
     
     this.state = {
-      loginView: true,
-      loadingView: false,
+      loginView: false,
+      loadingView: true,
       accountsView: false
     }
   }
@@ -26,6 +26,11 @@ class App extends Component {
     .then(res => res.json())
     .then(data => {
         users = data
+        this.setState({
+          loginView: true,
+          loadingView: false,
+          accountsView: false
+        })
         console.log(users)
     })
     .catch(res => {
@@ -42,7 +47,8 @@ class App extends Component {
             <FormsContainer>
               <LoginForm />
 
-              <CreateAccountForm 
+              <CreateAccountForm
+                users = {users}
                 showLoadingView = {() => {
                   this.setState({
                     loginView: false,
