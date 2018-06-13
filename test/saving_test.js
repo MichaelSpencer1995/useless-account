@@ -1,11 +1,11 @@
- const assert = require('assert')
+const assert = require('assert')
 const CreateAccount = require('../models/create_account')
 
 describe('saving create account', () => {
     it('saved new account to database', done => {
         let account67 = new CreateAccount({
-            username: 'Sunlazypitufo',
-            password: 'spartan117',
+            username: 'Sunlsssazypitufo',
+            password: 'spssssartan117',
             motto: ''
         })
 

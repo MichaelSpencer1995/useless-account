@@ -5,8 +5,6 @@ const app = express()
 const bodyParser = require('body-parser')
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const mongoose = require('mongoose')
-
-
 //Es6 promises, don't know if this is nesesary
 mongoose.Promise = global.Promise
 
@@ -30,7 +28,6 @@ beforeEach(done => {
         done()
     })
 })
-
 app.use(require("body-parser").json())
 
 app.use(express.static(path.resolve(__dirname, 'public')))
