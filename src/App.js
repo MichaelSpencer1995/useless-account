@@ -12,8 +12,7 @@ class App extends Component {
     super(props)
     
     this.state = {
-      loginIn: false,
-      userCridentials: null,
+      loggedInUserCridentials: null,
       loginView: false,
       loadingView: true,
       accountsView: false
@@ -51,6 +50,11 @@ class App extends Component {
 
               <CreateAccountForm
                 users = {users}
+                setLogInCridentials = {userCridentials => {
+                  this.setState({
+                    loggedInUserCridentials: userCridentials
+                  })
+                }}
                 showLoadingView = {() => {
                   this.setState({
                     loginView: false,
@@ -75,7 +79,9 @@ class App extends Component {
         <Container>
           <TitleAndDes />
           
-          <AccountsList />
+          <AccountsList
+            loggedInUserCridentials={this.state.loggedInUserCridentials}
+            users={users}/>
         </Container>
       )
     }

@@ -206,22 +206,27 @@ class CreateAccountForm extends Component {
         event.preventDefault()
         
         const valid = this.validateForm()
+        let loginCridentials = null
 
         if(!valid) {
             return
         }
+
+        loginCridentials = {
+            username: this.state.usernameValue,
+            password: this.state.passwordValue,
+            motto: this.state.mottoValue,
+            theme: this.state.themeValue
+        }
+
         
+        this.props.setLogInCridentials(loginCridentials)
         this.props.showLoadingView()
         
         fetch('/create-account', {
             method: 'post',
             headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({
-                username: this.state.usernameValue,
-                password: this.state.passwordValue,
-                motto: this.state.mottoValue,
-                theme: this.state.themeValue
-            })
+            body: JSON.stringify(loginCridentials)
           })
         .then(res => {
             this.props.showAccountsView()
