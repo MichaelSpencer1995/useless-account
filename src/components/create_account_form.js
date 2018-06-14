@@ -2,15 +2,16 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 class CreateAccountForm extends Component {
-    constructor(){
+    constructor() {
         super()
         
         this.state = {
+            usernameErrorMessage: '*Username is taken',
             usernameValue: '',
             passwordValue: '',
             confirmPasswordValue: '',
             mottoValue: '',
-            themeValue: 'Volvo',
+            themeValue: 'light',
             usernameValid: true,
             passwordValid: true,
             confirmPasswordValid: true
@@ -31,7 +32,7 @@ class CreateAccountForm extends Component {
 
                         <ErrorMessage
                             valid={this.state.usernameValid}>
-                            *Username is taken
+                            {this.state.usernameErrorMessage}
                         </ErrorMessage>
                     </LabelErrorMessageContainer>
                     <input 
@@ -77,10 +78,10 @@ class CreateAccountForm extends Component {
                     <select
                         onChange={event => this.updateInputValueInState(event)}
                         name="themeValue">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="winter">Winter</option>
+                        <option value="fall">Fall</option>
                     </select>
 
                     <button>Create Account</button>
@@ -94,6 +95,7 @@ class CreateAccountForm extends Component {
     }
 
     updateInputValueInState(e, input) {
+        //the input is passed through to set state "synchronously"
         let change = {}
     
         change[e.target.name] = e.target.value
@@ -118,38 +120,49 @@ class CreateAccountForm extends Component {
     }
 
     checkIfUsernameIsAvailable() {
+        console.log('this for sure runs')
+        
         const usernameUnavailable = window.usernames.indexOf(this.state.usernameValue.toLowerCase()) !== -1
-
-        if(usernameUnavailable) {
-            console.log(this.state.usernameValue)
+        const usernameLongEnough = this.state.usernameValue.length >= 5
+        
+        if(!usernameLongEnough) {
             this.setState({
-                usernameValid: false
+                usernameErrorMessage: '*Username is too short',
+                usernameValid: false,
             })
+            return false
         } else {
-            console.log(this.state.usernameValue)
-            this.setState({
-                usernameValid: true
-            })
+            if(usernameUnavailable) {
+                this.setState({
+                    usernameErrorMessage: '*Username is already taken',
+                    usernameValid: false,
+                })
+                return false
+            } else {
+                this.setState({
+                    usernameValid: true,
+                })
+                return true
+            }
         }
     }
 
     validatePassword() {
+        console.log('does it even run?')
         const confirmPasswordFieldNotBlank = this.state.confirmPasswordValue !== ''
         const passwordsMatch = this.state.passwordValue === this.state.confirmPasswordValue
         const passwordLongEnough = this.state.passwordValue.length >= 5
         
-        if(confirmPasswordFieldNotBlank) {
-            if(passwordsMatch) {
-                this.setState({ confirmPasswordValid: true })
-            } else {
-                this.setState({ confirmPasswordValid: false })
-            }
-        }
-
-        if(passwordLongEnough) {
-            this.setState({ passwordValid: true })
+        if(!passwordLongEnough) {
+            this.setState({
+                passwordValid: false
+            })
+            return false
         } else {
-            this.setState({ passwordValid: false })
+            this.setState({
+                passwordValid: true
+            })
+            return true
         }
     }
 
@@ -157,16 +170,30 @@ class CreateAccountForm extends Component {
         const passwordsMatch = this.state.passwordValue === this.state.confirmPasswordValue
 
         if(passwordsMatch) {
-            this.setState({ confirmPasswordValid: true })
+            this.setState({
+                confirmPasswordValid: true
+            })
+            return true
         } else {
-            this.setState({ confirmPasswordValid: false })
+            this.setState({
+                confirmPasswordValid: false
+            })
+            return false
         }
     }
 
     validateForm() {
-        const formValid = this.state.usernameValid &&
-                          this.state.passwordValid &&
-                          this.state.confirmPasswordValid
+        // this.checkIfUsernameIsAvailable()
+        // this.validatePassword()
+        // this.validateConfirmPassword()
+        // // only reason these are getting ran first is because
+        // // in the form valid variable below, if username fails,
+        // // the next functions don't run and therefor don't
+        // // alert the user of all the incorrect fields
+        
+        const formValid = this.checkIfUsernameIsAvailable() &&
+                          this.validatePassword() &&
+                          this.validateConfirmPassword()
 
         if(formValid) {
             return true
@@ -174,7 +201,7 @@ class CreateAccountForm extends Component {
         alert('please fix the indicated fields')
         return false
     }
-
+    
     handleSubmit(event) {
         event.preventDefault()
         

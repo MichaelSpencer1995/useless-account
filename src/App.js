@@ -12,6 +12,8 @@ class App extends Component {
     super(props)
     
     this.state = {
+      loginIn: false,
+      userCridentials: null,
       loginView: false,
       loadingView: true,
       accountsView: false
@@ -58,9 +60,9 @@ class App extends Component {
                 }}
                 showAccountsView = {() => {
                   this.setState({
-                    loginView: true,
+                    loginView: false,
                     loadingView: false,
-                    accountsView: false
+                    accountsView: true
                   })
                 }} 
               />

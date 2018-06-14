@@ -44,18 +44,19 @@ input, select {
   padding: .5em;
   border-radius: 4px;
   border: #cdcdcd 1px solid;
+  color: #777;
 }
 
 input::-webkit-input-placeholder {
-  color: #bbb;
+  color: #777;
 }
 
 input::-moz-placeholder {
-  color: #bbb;
+  color: #777;
 }
 
 input::-ms-input-placeholder {
-  color: #bbb;
+  color: #777;
 }
 
 
