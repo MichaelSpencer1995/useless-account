@@ -20,6 +20,10 @@ class App extends Component {
   }
   
   componentWillMount() {
+    this.getUsers()
+  }
+  
+  getUsers() {
     fetch('/get-users-from-database', {
         method: 'post',
         headers: {'Content-Type':'application/json'}
@@ -78,10 +82,14 @@ class App extends Component {
       return (
         <Container>
           <TitleAndDes />
-          
-          <AccountsList
-            loggedInUserCridentials={this.state.loggedInUserCridentials}
-            users={users}/>
+          <ListAndLogOutContainer>
+            <AccountsList
+              loggedInUserCridentials={this.state.loggedInUserCridentials}
+              users={users}/>
+
+            <LogOut
+                onClick = {() => this.getUsers()}>Log Out</LogOut>
+          </ListAndLogOutContainer>
         </Container>
       )
     }
@@ -110,7 +118,6 @@ const Container = styled.div`
   padding-bottom: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
   
   @media(max-width: 1040px) {
     padding: 50px 90px;
@@ -119,6 +126,18 @@ const Container = styled.div`
     padding: 30px 30px;
     width: 80%;
   }
+`
+
+const ListAndLogOutContainer = styled.div`
+  align-self: flex-start;
+  width: 80%;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+`
+const LogOut = styled.button`
+  height: 40px;
+  margin-top: 30px;
 `
 
 const FormsContainer = styled.div`

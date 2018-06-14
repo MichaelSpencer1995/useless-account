@@ -109,9 +109,8 @@ const AccountsList = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    border: #ccc 1px solid;
     border-top: none;
-    background: #ddd;
+    background: #f3ecb4;
     align-self: flex-start;
 `
 
