@@ -13,31 +13,31 @@ class AccountsListComponent extends Component {
 
             switch(account.theme) {
                 case 'light':
-                    cardColor = 'orange'
-                    borderColor = 'brown'
-                    primaryColor = 'red'
-                    secondaryColor = 'purple'
+                    cardColor = '#f7f7f7'
+                    borderColor = '#dc5d5d'
+                    primaryColor = '#d43131'
+                    secondaryColor = '#d43131'
                         break
                 
                 case 'dark':
-                    cardColor = 'purple'
-                    borderColor = 'blue'
-                    primaryColor = 'green'
-                    secondaryColor = 'yellow'
+                    cardColor = '#3c273c'
+                    borderColor = '#271427'
+                    primaryColor = '#271427'
+                    secondaryColor = '#686790'
                         break
 
                 case 'winter':
-                    cardColor = 'purple'
-                    borderColor = 'blue'
-                    primaryColor = 'green'
-                    secondaryColor = 'yellow'
+                    cardColor = '#d8d8d8'
+                    borderColor = '#009688'
+                    primaryColor = '#403d3d'
+                    secondaryColor = '#007380'
                         break
 
                 case 'fall':
-                    cardColor = 'purple'
-                    borderColor = 'blue'
-                    primaryColor = 'green'
-                    secondaryColor = 'yellow'
+                    cardColor = '#ff8338'
+                    borderColor = '#F44336'
+                    primaryColor = '#803c00'
+                    secondaryColor = '#ffde5e'
                         break
             }
 
@@ -55,31 +55,31 @@ class AccountsListComponent extends Component {
 
         switch(this.props.loggedInUserCridentials.theme) {
             case 'light':
-                cardColor = 'orange'
-                borderColor = 'brown'
-                primaryColor = 'red'
-                secondaryColor = 'purple'
+                cardColor = '#f7f7f7'
+                borderColor = '#dc5d5d'
+                primaryColor = '#d43131'
+                secondaryColor = '#d43131'
                     break
             
             case 'dark':
-                cardColor = 'purple'
-                borderColor = 'blue'
-                primaryColor = 'green'
-                secondaryColor = 'yellow'
+                cardColor = '#3c273c'
+                borderColor = '#271427'
+                primaryColor = '#271427'
+                secondaryColor = '#686790'
                     break
 
             case 'winter':
-                cardColor = 'purple'
-                borderColor = 'blue'
-                primaryColor = 'green'
-                secondaryColor = 'yellow'
+                cardColor = '#d8d8d8'
+                borderColor = '#009688'
+                primaryColor = '#403d3d'
+                secondaryColor = '#007380'
                     break
 
             case 'fall':
-                cardColor = 'purple'
-                borderColor = 'blue'
-                primaryColor = 'green'
-                secondaryColor = 'yellow'
+                cardColor = '#ff8338'
+                borderColor = '#F44336'
+                primaryColor = '#803c00'
+                secondaryColor = '#ffde5e'
                     break
         }
 
@@ -111,6 +111,7 @@ const AccountsList = styled.div`
     flex-direction: column;
     border: #ccc 1px solid;
     border-top: none;
+    background: #ddd;
     align-self: flex-start;
 `
 

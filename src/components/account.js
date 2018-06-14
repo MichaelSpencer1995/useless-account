@@ -12,37 +12,33 @@ class Account extends Component {
         usersAccount = this.props.usersAccount
         
         return (
-            <SingleAccount style = {{ position: usersAccount, background: cardColor, borderRight: `${ borderColor } 3px solid` }}>
-                <h3 style = {{ color: primaryColor }}>
-                    {this.props.username}
-                </h3>
+            <SingleAccount style = {{ position: usersAccount, background: cardColor, borderRight: `${ borderColor } 8px solid` }}>
+                    <h3 style = {{ color: primaryColor }}>
+                        {this.props.username}
+                    </h3>
 
-                <p style = {{ color: secondaryColor }}>
-                    {this.props.motto || "Yolo"}
-                </p>
+                    <p style = {{ color: secondaryColor }}>
+                        {this.props.motto || "Yolo"}
+                    </p>
             </SingleAccount>
         )
     }
 }
 
 const SingleAccount = styled.div`
-    width: 290px;
-    height: 53px;
+    width: 280px;
+    height: 61px;
     margin-top: 10px;
-    padding: 1em;
+    padding: 2em;
     box-sizing: border-box;
     border-radius: 3px;
-    background: ${ cardColor };
-    border-right: ${ borderColor } 3px solid;
-    position: ${({ usersAccount }) => usersAccount ? "fixed" : "initial" };
-    
-    h3{
-        color: ${ primaryColor };
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     p{
-        color: ${ secondaryColor };
         font-weight: 500;
-        font-size: 16px;
+        font-style: italic;
+        font-size: 14px;
     }
 ` 
 
