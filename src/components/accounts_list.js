@@ -104,14 +104,11 @@ const AccountsList = styled.div`
     margin-top: 40px;
     width: 300px;
     position: relative;
-    height: 308px;
+    max-height: 308px;
     overflow: scroll;
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
     border-top: none;
     background: #f3ecb4;
-    align-self: flex-start;
 `
 
 export default AccountsListComponent
