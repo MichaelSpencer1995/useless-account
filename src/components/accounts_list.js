@@ -1,33 +1,43 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import accountsHardData from './accounts_hard_data'
+import Account from './account'
 
 class AccountsListComponent extends Component {
     render() {
-        console.log(this.props.users)
-        const Accounts = this.props.users.map(account => (
-            <Account>
-                <h3>
-                    {account.username}
-                </h3>
+        const Accounts = this.props.users.map(account => {
+            let cardColor, borderColor, primaryColor, secondaryColor
 
-                <p>
-                    {account.motto || "Yolo"}
-                </p>
-            </Account>
-        ))
-        
+            switch(account.theme) {
+                case 'fall':
+                    cardColor = 'orange'
+                    borderColor = 'brown'
+                    primaryColor = 'red'
+                    secondaryColor = 'purple'
+                        break
+                
+                default:
+                    cardColor = 'purple'
+                    borderColor = 'blue'
+                    primaryColor = 'green'
+                    secondaryColor = 'yellow'
+                    console.log(account, cardColor, borderColor, primaryColor, secondaryColor)
+                        break
+            }
+
+            return (
+                <Account
+                    username = { account.username }
+                    motto = { account.motto }
+                    cardColor = { cardColor } 
+                    borderColor = { borderColor }
+                    primaryColor = { primaryColor }
+                    secondaryColor = { secondaryColor }/>
+            )
+        })
+
         return (
             <AccountsList>
-                <UserAccount>
-                    <h3>
-                        {this.props.loggedInUserCridentials.username}
-                    </h3>
-
-                    <p>
-                        {this.props.loggedInUserCridentials.motto || "Yolo"}
-                    </p>
-                </UserAccount>
+                <UserAccount />
 
                 { Accounts }
             </AccountsList>
@@ -35,33 +45,23 @@ class AccountsListComponent extends Component {
     }
 }
 
-const Account = styled.div`
-    width: 290px;
-    background: #ddd;
-    margin: 0 auto;
-    h3{
-        color: #222;
-    }
-    p{
-        color: #444;
-    }
-`
-
 const UserAccount = styled(Account)`
-    border: lightblue 3px solid;
     position: fixed;
-    width: 284px;
+    width: 293px;
 `
 
 const AccountsList = styled.div`
     margin-top: 40px;
     width: 300px;
-    height: 250px;
+    position: relative;
+    height: 308px;
     overflow: scroll;
     box-sizing: border-box;
-    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
     border: #ccc 1px solid;
-    border-radius: 10px;
+    border-top: none;
+    align-self: flex-start;
 `
 
 export default AccountsListComponent
