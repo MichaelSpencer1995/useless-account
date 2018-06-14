@@ -4,28 +4,46 @@ import Account from './account'
 
 class AccountsListComponent extends Component {
     render() {
+        //these are for the user account
+        let cardColor, borderColor, primaryColor, secondaryColor
+        
         const Accounts = this.props.users.map(account => {
+            //these are for the accounts on the database
             let cardColor, borderColor, primaryColor, secondaryColor
 
             switch(account.theme) {
-                case 'fall':
+                case 'light':
                     cardColor = 'orange'
                     borderColor = 'brown'
                     primaryColor = 'red'
                     secondaryColor = 'purple'
                         break
                 
-                default:
+                case 'dark':
                     cardColor = 'purple'
                     borderColor = 'blue'
                     primaryColor = 'green'
                     secondaryColor = 'yellow'
-                    console.log(account, cardColor, borderColor, primaryColor, secondaryColor)
+                        break
+
+                case 'winter':
+                    cardColor = 'purple'
+                    borderColor = 'blue'
+                    primaryColor = 'green'
+                    secondaryColor = 'yellow'
+                        break
+
+                case 'fall':
+                    cardColor = 'purple'
+                    borderColor = 'blue'
+                    primaryColor = 'green'
+                    secondaryColor = 'yellow'
                         break
             }
 
             return (
                 <Account
+                    usersAccount = { 'initial' }
                     username = { account.username }
                     motto = { account.motto }
                     cardColor = { cardColor } 
@@ -35,20 +53,52 @@ class AccountsListComponent extends Component {
             )
         })
 
+        switch(this.props.loggedInUserCridentials.theme) {
+            case 'light':
+                cardColor = 'orange'
+                borderColor = 'brown'
+                primaryColor = 'red'
+                secondaryColor = 'purple'
+                    break
+            
+            case 'dark':
+                cardColor = 'purple'
+                borderColor = 'blue'
+                primaryColor = 'green'
+                secondaryColor = 'yellow'
+                    break
+
+            case 'winter':
+                cardColor = 'purple'
+                borderColor = 'blue'
+                primaryColor = 'green'
+                secondaryColor = 'yellow'
+                    break
+
+            case 'fall':
+                cardColor = 'purple'
+                borderColor = 'blue'
+                primaryColor = 'green'
+                secondaryColor = 'yellow'
+                    break
+        }
+
         return (
             <AccountsList>
-                <UserAccount />
+                <Account
+                    usersAccount = { 'fixed' }
+                    username = { this.props.loggedInUserCridentials.username }
+                    motto = { this.props.loggedInUserCridentials.motto }
+                    cardColor = { cardColor } 
+                    borderColor = { borderColor }
+                    primaryColor = { primaryColor }
+                    secondaryColor = { secondaryColor }/>
 
                 { Accounts }
             </AccountsList>
         )
     }
 }
-
-const UserAccount = styled(Account)`
-    position: fixed;
-    width: 293px;
-`
 
 const AccountsList = styled.div`
     margin-top: 40px;
