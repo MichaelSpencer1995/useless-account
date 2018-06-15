@@ -5,7 +5,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const mongoose = require('mongoose')
-const SaveAccountToDb = require('./saving_test')
+const SaveAccountToDb = require('./test/saving_test')
 const User = require('../models/user')
 let users
 //Es6 promises, don't know if this is nesesary
