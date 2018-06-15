@@ -8,7 +8,7 @@ const SaveAccountToDb = (newUser) => {
         motto: newUser.motto,
         theme: newUser.theme
     })
-
+    
     user.save().then(console.log('saved')).catch('something went wrong')
 }
 
