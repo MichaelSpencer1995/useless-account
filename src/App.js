@@ -53,7 +53,8 @@ class App extends Component {
             <TitleAndDes />
 
             <FormsContainer>
-              <LoginForm />
+              <LoginForm 
+                users={users}/>
 
               <CreateAccountForm
                 users = {users}
@@ -159,6 +160,11 @@ const Container = styled.div`
   padding-bottom: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  
+  p {
+    margin-bottom: 20px;
+  }
   
   @media(max-width: 1040px) {
     padding: 50px 90px;

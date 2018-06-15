@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-let cardColor, borderColor, primaryColor, secondaryColor, usersAccount, width
-
 class Account extends Component {
     render() {
-        cardColor = this.props.cardColor
-        borderColor = this.props.borderColor
-        primaryColor = this.props.primaryColor
-        secondaryColor = this.props.secondaryColor
-        usersAccount = this.props.usersAccount
-        width = this.props.width
+        let cardColor = this.props.cardColor
+        let borderColor = this.props.borderColor
+        let primaryColor = this.props.primaryColor
+        let secondaryColor = this.props.secondaryColor
+        let usersAccount = this.props.usersAccount
 
         return (
-            <SingleAccount style = {{ position: usersAccount, background: cardColor, borderRight: `${ borderColor } 8px solid`, width: width}}>
+            <SingleAccount style = {{ position: usersAccount, background: cardColor, borderRight: `${ borderColor } 8px solid`}}>
                     <UsernameMottoContainer>
                         <h3 style = {{ color: primaryColor }}>
                             {this.props.username}
@@ -31,7 +28,6 @@ class Account extends Component {
 }
 
 const SingleAccount = styled.div`
-    width: 280px;
     width: 100%;
     height: 61px;
     margin-bottom: 10px;
@@ -42,15 +38,23 @@ const SingleAccount = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    p{
+    h3 {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    p {
         font-weight: 500;
         font-style: italic;
         font-size: 14px;
+        padding: 0 !important;
+        margin: 0 !important;
     }
 ` 
 
 const UsernameMottoContainer = styled.div`
-    // height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `
 
 const DeleteAccount = styled.button`
@@ -58,10 +62,10 @@ const DeleteAccount = styled.button`
     width: 80px;
     font-size: 8px;
     margin: 0;
-    background: linear-gradient(-180deg,#03A9F4 0,#3F51B5 100%);
+    background: #da2012;
     border: none;
     &:hover{
-        background: #0074a9;
+        background: #9c1a10;
     }
 `
 

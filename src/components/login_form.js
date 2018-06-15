@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
+let attemptedLoginUserIndex = null
+
 class LoginForm extends Component {
     constructor(){
         super()
 
         this.state = {
             usernameValue: '',
-            passwordValue: ''
+            passwordValue: '',
+            usernameValid: true,
+            passwordValid: true
         }
     }
 
@@ -19,17 +23,33 @@ class LoginForm extends Component {
                 <form
                     onSubmit={event => this.handleSubmit(event)}
                     method="POST">
+                    <LabelErrorMessageContainer> 
+                        <label>Enter Username</label>
 
-                    <label>Enter Username</label>
-                    <input 
-                        value={this.state.name}
-                        onChange={event => {this.updateInputValueInState(event)}}
+                        <ErrorMessage
+                            valid={this.state.usernameValid}>
+                            *Username does not exist
+                        </ErrorMessage>
+                    </LabelErrorMessageContainer>
+                    <input
+                        name="usernameValue"
+                        value={this.state.usernameValue}
+                        onChange={event => this.updateInputValueInState(event)}
                         placeholder="username" />
 
-                    <label>Enter Password</label>
+                    <LabelErrorMessageContainer>
+                        <label>Enter Password</label>
+
+                        <ErrorMessage
+                            valid={this.state.passwordValid}>
+                            *Password incorrect
+                        </ErrorMessage>
+                    </LabelErrorMessageContainer>
                     <input
-                        value={this.state.name}
-                        onChange={event => {this.updateInputValueInState(event)}} 
+                        type="password"
+                        name="passwordValue"
+                        value={this.state.passwordValue}
+                        onChange={event => this.updateInputValueInState(event)}
                         placeholder="password" />
 
                     <button>Login</button>
@@ -45,24 +65,49 @@ class LoginForm extends Component {
         this.setState(change)
     }
 
+    checkIfUserNameExists(username) {
+        const users = this.props.users
+        let usernameExists = false
+
+        for(let i = 0; i < users.length; i++) {
+            if(users[i].username.toLowerCase() === username.toLowerCase()) {
+                usernameExists = true
+                attemptedLoginUserIndex = i
+            }
+        }
+        return usernameExists
+    }
+
+    confirmLoginCridentials() {
+        const users = this.props.users
+        const usernameExists = this.checkIfUserNameExists(this.state.usernameValue)
+        
+        if(usernameExists){
+            const passwordsMatch = users[attemptedLoginUserIndex].password === this.state.passwordValue
+            this.setState({ usernameValid: true })
+
+            if(passwordsMatch){
+                this.setState({ passwordValid: true })
+                return true
+                // login
+            } else {
+                // set passwords dont match error in state
+                this.setState({ passwordValid: false })
+                return false
+            }
+        } else {
+            // set username does not exist
+            this.setState({ usernameValid: false })
+            return false
+        }    
+    }
+
     handleSubmit(event) {
         event.preventDefault()
-        console.log(this.state)
-        
-        fetch('/login', {
-            method: 'post',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({
-                username: this.state.usernameValue,
-                password: this.state.passwordValue
-            })
-          })
-        .then(res => {
-            console.log('success')
-        })
-        .catch(res => {
-            console.log('fail')
-        })
+        if(this.confirmLoginCridentials()) {
+                console.log('login!!')
+                // login
+        }
     }
 }
 
@@ -84,6 +129,17 @@ const Container = styled.div`
             width: 66px;
         }
     }
+`
+const LabelErrorMessageContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+`
+const ErrorMessage = styled.div`
+    font-size: 12px;
+    font-weight: 400;
+    color: #d01a1a;
+    display: ${({ valid }) => valid ? "none" : "block" };
 `
 
 export default LoginForm
