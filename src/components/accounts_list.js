@@ -43,6 +43,7 @@ class AccountsListComponent extends Component {
 
             return (
                 <Account
+                    width = { '100%' }
                     usersAccount = { 'initial' }
                     username = { account.username }
                     motto = { account.motto }
@@ -85,15 +86,6 @@ class AccountsListComponent extends Component {
 
         return (
             <AccountsList>
-                <Account
-                    usersAccount = { 'fixed' }
-                    username = { this.props.loggedInUserCridentials.username }
-                    motto = { this.props.loggedInUserCridentials.motto }
-                    cardColor = { cardColor } 
-                    borderColor = { borderColor }
-                    primaryColor = { primaryColor }
-                    secondaryColor = { secondaryColor }/>
-
                 { Accounts }
             </AccountsList>
         )
@@ -102,7 +94,7 @@ class AccountsListComponent extends Component {
 
 const AccountsList = styled.div`
     margin-top: 40px;
-    width: 300px;
+    width: 100%;
     position: relative;
     max-height: 308px;
     overflow: scroll;

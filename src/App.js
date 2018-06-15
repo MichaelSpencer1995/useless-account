@@ -3,6 +3,7 @@ import TitleAndDes from './components/title_and_des'
 import CreateAccountForm from './components/create_account_form'
 import LoginForm from './components/login_form'
 import AccountsList from './components/accounts_list'
+import Account from './components/account'
 import styled from 'styled-components'
 import Loader from 'react-loader-spinner'
 let users
@@ -44,6 +45,8 @@ class App extends Component {
   }
 
   render() {
+    let cardColor, borderColor, primaryColor, secondaryColor
+    
     if(this.state.loginView) {
       return (
         <Container>
@@ -79,10 +82,48 @@ class App extends Component {
       )
     }
     if(this.state.accountsView) {
+      switch(this.state.loggedInUserCridentials.theme) {
+        case 'light':
+            cardColor = '#f7f7f7'
+            borderColor = '#dc5d5d'
+            primaryColor = '#d43131'
+            secondaryColor = '#d43131'
+                break
+        
+        case 'dark':
+            cardColor = '#3c273c'
+            borderColor = '#271427'
+            primaryColor = '#271427'
+            secondaryColor = '#686790'
+                break
+
+        case 'winter':
+            cardColor = '#d8d8d8'
+            borderColor = '#009688'
+            primaryColor = '#403d3d'
+            secondaryColor = '#007380'
+                break
+
+        case 'fall':
+            cardColor = '#ff8338'
+            borderColor = '#F44336'
+            primaryColor = '#803c00'
+            secondaryColor = '#ffde5e'
+                break
+      }
+
       return (
         <Container>
           <TitleAndDes />
           <ListAndLogOutContainer>
+            <Account
+                      username = { this.state.loggedInUserCridentials.username }
+                      motto = { this.state.loggedInUserCridentials.motto }
+                      cardColor = { cardColor } 
+                      borderColor = { borderColor }
+                      primaryColor = { primaryColor }
+                      secondaryColor = { secondaryColor }/>
+
             <AccountsList
               loggedInUserCridentials={this.state.loggedInUserCridentials}
               users={users}/>
@@ -130,9 +171,9 @@ const Container = styled.div`
 
 const ListAndLogOutContainer = styled.div`
   align-self: flex-start;
-  width: 80%;
+  width: 100%;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   justify-content: space-between;
 `
 const LogOut = styled.button`

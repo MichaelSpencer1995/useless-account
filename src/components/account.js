@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-let cardColor, borderColor, primaryColor, secondaryColor, usersAccount
+let cardColor, borderColor, primaryColor, secondaryColor, usersAccount, width
 
 class Account extends Component {
     render() {
@@ -10,9 +10,10 @@ class Account extends Component {
         primaryColor = this.props.primaryColor
         secondaryColor = this.props.secondaryColor
         usersAccount = this.props.usersAccount
-        
+        width = this.props.width
+
         return (
-            <SingleAccount style = {{ position: usersAccount, background: cardColor, borderRight: `${ borderColor } 8px solid`}}>
+            <SingleAccount style = {{ position: usersAccount, background: cardColor, borderRight: `${ borderColor } 8px solid`, width: width}}>
                     <UsernameMottoContainer>
                         <h3 style = {{ color: primaryColor }}>
                             {this.props.username}
@@ -31,6 +32,7 @@ class Account extends Component {
 
 const SingleAccount = styled.div`
     width: 280px;
+    width: 100%;
     height: 61px;
     margin-bottom: 10px;
     border: white 2px solid;
