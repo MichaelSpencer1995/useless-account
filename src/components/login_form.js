@@ -105,8 +105,17 @@ class LoginForm extends Component {
     handleSubmit(event) {
         event.preventDefault()
         if(this.confirmLoginCridentials()) {
-                console.log('login!!')
-                // login
+            const user = this.props.users[attemptedLoginUserIndex]
+
+            const loginCridentials = {
+                username: user.username,
+                password: user.password,
+                motto: user.motto,
+                theme: user.theme
+            }
+
+            this.props.setLogInCridentials(loginCridentials)
+            this.props.showAccountsView()
         }
     }
 }

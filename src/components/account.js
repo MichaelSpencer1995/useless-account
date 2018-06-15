@@ -11,17 +11,15 @@ class Account extends Component {
 
         return (
             <SingleAccount style = {{ position: usersAccount, background: cardColor, borderRight: `${ borderColor } 8px solid`}}>
-                    <UsernameMottoContainer>
-                        <h3 style = {{ color: primaryColor }}>
-                            {this.props.username}
-                        </h3>
+                <UsernameMottoContainer>
+                    <h3 style = {{ color: primaryColor }}>
+                        {this.props.username}
+                    </h3>
 
-                        <p style = {{ color: secondaryColor }}>
-                            {this.props.motto || "Yolo"}
-                        </p>
-                    </UsernameMottoContainer>
-
-                    <DeleteAccount>Delete Account</DeleteAccount>
+                    <p style = {{ color: secondaryColor }}>
+                        {this.props.motto || "Yolo"}
+                    </p>
+                </UsernameMottoContainer>
             </SingleAccount>
         )
     }
@@ -55,18 +53,6 @@ const UsernameMottoContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-`
-
-const DeleteAccount = styled.button`
-    height: 25px;
-    width: 80px;
-    font-size: 8px;
-    margin: 0;
-    background: #da2012;
-    border: none;
-    &:hover{
-        background: #9c1a10;
-    }
 `
 
 export default Account

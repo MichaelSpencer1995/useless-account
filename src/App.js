@@ -54,7 +54,19 @@ class App extends Component {
 
             <FormsContainer>
               <LoginForm 
-                users={users}/>
+                users={users}
+                setLogInCridentials = {userCridentials => {
+                  this.setState({
+                    loggedInUserCridentials: userCridentials
+                  })
+                }}
+                showAccountsView = {() => {
+                  this.setState({
+                    loginView: false,
+                    loadingView: false,
+                    accountsView: true
+                  })
+                }}/>
 
               <CreateAccountForm
                 users = {users}
@@ -117,13 +129,15 @@ class App extends Component {
         <Container>
           <TitleAndDes />
           <ListAndLogOutContainer>
-            <Account
-                      username = { this.state.loggedInUserCridentials.username }
-                      motto = { this.state.loggedInUserCridentials.motto }
-                      cardColor = { cardColor } 
-                      borderColor = { borderColor }
-                      primaryColor = { primaryColor }
-                      secondaryColor = { secondaryColor }/>
+            <MyAccount>
+              <Account
+                        username = { this.state.loggedInUserCridentials.username }
+                        motto = { this.state.loggedInUserCridentials.motto }
+                        cardColor = { cardColor } 
+                        borderColor = { borderColor }
+                        primaryColor = { primaryColor }
+                        secondaryColor = { secondaryColor }/>
+            </MyAccount>
 
             <AccountsList
               loggedInUserCridentials={this.state.loggedInUserCridentials}
@@ -182,6 +196,11 @@ const ListAndLogOutContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `
+const MyAccount = styled.div`
+  border: #96d1ff 4px solid;
+  height: 61px;
+`
+
 const LogOut = styled.button`
   height: 40px;
   margin-top: 30px;
