@@ -7,11 +7,6 @@
 /coverage
 
 # production
-<<<<<<< HEAD
-/public
-=======
-
->>>>>>> 25b013c8
 
 # misc
 .DS_Store
