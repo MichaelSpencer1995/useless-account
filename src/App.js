@@ -26,7 +26,7 @@ class App extends Component {
   
   getUsers() {
     fetch('/get-users-from-database', {
-        method: 'post',
+        method: 'get',
         headers: {'Content-Type':'application/json'}
       })
     .then(res => res.json())

@@ -5,6 +5,12 @@ import Account from './account'
 class AccountsListComponent extends Component {
     render() {
         const Accounts = this.props.users.map(account => {
+            const currentUsersAccount = account.username === this.props.loggedInUserCridentials.username
+
+            if(currentUsersAccount) {
+                return
+            }
+            
             let cardColor, borderColor, primaryColor, secondaryColor
 
             switch(account.theme) {

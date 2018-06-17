@@ -13,7 +13,7 @@ mongoose.Promise = global.Promise
 
 // Connect to db before tests run
 // mongoose.connect('mongodb://localhost/testaroo')
-mongoose.connect(`mongodb+srv://${ process.env.MONGODBUSER }:${ process.env.MONGODBPASS }@cluster0-yhj1k.mongodb.net/test?retryWrites=true`)
+mongoose.connect(`mongodb://${ process.env.MONGODBUSER }:${ process.env.MONGODBPASS }@ds255320.mlab.com:55320/useless_account`)
 
 mongoose.connection.once('open', () => {
     console.log('connection made!')
@@ -52,7 +52,7 @@ app.post('/create-account', (req, res) => {
     res.sendStatus(200)
 })
 
-app.post('/get-users-from-database', (req, res) => {
+app.get('/get-users-from-database', (req, res) => {
     //get full list of users from database
     User.find({})
     .then(result => {
