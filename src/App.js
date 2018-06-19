@@ -97,22 +97,22 @@ class App extends Component {
     if(this.state.accountsView) {
       switch(this.state.loggedInUserCridentials.theme) {
         case 'light':
-            cardColor = '#f7f7f7'
-            borderColor = '#dc5d5d'
-            primaryColor = '#d43131'
-            secondaryColor = '#d43131'
+          cardColor = '#f7f7f7'
+          borderColor = '#cccccc'
+          primaryColor = '#505050'
+          secondaryColor = '#939fa5'
                 break
         
         case 'dark':
-            cardColor = '#3c273c'
-            borderColor = '#271427'
-            primaryColor = '#271427'
+            cardColor = '#2d262d'
+            borderColor = '#9093ff'
+            primaryColor = '#e0e0e0'
             secondaryColor = '#686790'
                 break
 
         case 'winter':
             cardColor = '#d8d8d8'
-            borderColor = '#009688'
+            borderColor = '#90c5c0'
             primaryColor = '#403d3d'
             secondaryColor = '#007380'
                 break
@@ -131,12 +131,13 @@ class App extends Component {
           <ListAndLogOutContainer>
             <MyAccount>
               <Account
-                        username = { this.state.loggedInUserCridentials.username }
-                        motto = { this.state.loggedInUserCridentials.motto }
-                        cardColor = { cardColor } 
-                        borderColor = { borderColor }
-                        primaryColor = { primaryColor }
-                        secondaryColor = { secondaryColor }/>
+                usersAccount
+                username = { this.state.loggedInUserCridentials.username }
+                motto = { this.state.loggedInUserCridentials.motto }
+                cardColor = { cardColor } 
+                borderColor = { borderColor }
+                primaryColor = { primaryColor }
+                secondaryColor = { secondaryColor }/>
             </MyAccount>
 
             <AccountsList
@@ -183,9 +184,9 @@ const Container = styled.div`
   @media(max-width: 1040px) {
     padding: 50px 90px;
   }
-  @media(max-width: 770px) {
+  @media(max-width: 840px) {
     padding: 30px 30px;
-    width: 80%;
+    width: 100%;
   }
 `
 
@@ -197,13 +198,18 @@ const ListAndLogOutContainer = styled.div`
   justify-content: space-between;
 `
 const MyAccount = styled.div`
-  border: #96d1ff 4px solid;
-  height: 61px;
+    border: #adadad 1px solid;
+    height: 61px;
+    border-radius: 5px;
+    padding: 1px;
 `
 
 const LogOut = styled.button`
-  height: 40px;
-  margin-top: 30px;
+  height: 36px;
+  margin-top: 0px;
+  width: 100px;
+  align-self: flex-end;
+  
 `
 
 const FormsContainer = styled.div`

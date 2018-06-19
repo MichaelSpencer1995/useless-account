@@ -7,10 +7,15 @@ class Account extends Component {
         let borderColor = this.props.borderColor
         let primaryColor = this.props.primaryColor
         let secondaryColor = this.props.secondaryColor
-        let usersAccount = this.props.usersAccount
+        
+        let usersAccountWidth = '96.5%'
+        
+        if(this.props.usersAccount) {
+            usersAccountWidth = '100%'
+        }
 
         return (
-            <SingleAccount style = {{ position: usersAccount, background: cardColor, borderRight: `${ borderColor } 8px solid`}}>
+            <SingleAccount style = {{ width: usersAccountWidth, background: cardColor, border: `${ borderColor } 1px solid`, borderRight: `${ borderColor } 4px solid`}}>
                 <UsernameMottoContainer>
                     <h3 style = {{ color: primaryColor }}>
                         {this.props.username}
@@ -26,8 +31,8 @@ class Account extends Component {
 }
 
 const SingleAccount = styled.div`
-    width: 100%;
     height: 61px;
+    margin: 0 auto;
     margin-bottom: 10px;
     border: white 2px solid;
     box-sizing: border-box;
@@ -36,6 +41,7 @@ const SingleAccount = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     h3 {
         padding: 0 !important;
         margin: 0 !important;

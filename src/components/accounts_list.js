@@ -15,32 +15,32 @@ class AccountsListComponent extends Component {
 
             switch(account.theme) {
                 case 'light':
-                    cardColor = '#f7f7f7'
-                    borderColor = '#dc5d5d'
-                    primaryColor = '#d43131'
-                    secondaryColor = '#d43131'
-                        break
-                
-                case 'dark':
-                    cardColor = '#3c273c'
-                    borderColor = '#271427'
-                    primaryColor = '#271427'
-                    secondaryColor = '#686790'
-                        break
-
-                case 'winter':
-                    cardColor = '#d8d8d8'
-                    borderColor = '#009688'
-                    primaryColor = '#403d3d'
-                    secondaryColor = '#007380'
-                        break
-
-                case 'fall':
-                    cardColor = '#ff8338'
-                    borderColor = '#F44336'
-                    primaryColor = '#803c00'
-                    secondaryColor = '#ffde5e'
-                        break
+                cardColor = '#f7f7f7'
+                borderColor = '#cccccc'
+                primaryColor = '#505050'
+                secondaryColor = '#939fa5'
+                      break
+              
+              case 'dark':
+                  cardColor = '#2d262d'
+                  borderColor = '#9093ff'
+                  primaryColor = '#e0e0e0'
+                  secondaryColor = '#686790'
+                      break
+      
+              case 'winter':
+                  cardColor = '#d8d8d8'
+                  borderColor = '#90c5c0'
+                  primaryColor = '#403d3d'
+                  secondaryColor = '#007380'
+                      break
+      
+              case 'fall':
+                  cardColor = '#ff8338'
+                  borderColor = '#F44336'
+                  primaryColor = '#803c00'
+                  secondaryColor = '#ffde5e'
+                      break
             }
 
             return (
@@ -70,12 +70,14 @@ const AccountsList = styled.div`
     overflow: scroll;
     box-sizing: border-box;
     border-top: none;
-    background: #f3ecb4;
+    
     ::-webkit-scrollbar {
         width: 12px;
     }
     ::-webkit-scrollbar-track {
         background: white;
+        position: relative;
+        left: 10px;
     }
     ::-webkit-scrollbar-thumb {
         background: #ddd;

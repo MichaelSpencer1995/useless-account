@@ -129,19 +129,19 @@ class CreateAccountForm extends Component {
             this.setState({
                 usernameErrorMessage: '*Username is too short',
                 usernameValid: false,
-            })
+            }, () => false)
             return false
         } else {
             if(usernameUnavailable) {
                 this.setState({
                     usernameErrorMessage: '*Username is already taken',
                     usernameValid: false,
-                })
+                }, () => false)
                 return false
             } else {
                 this.setState({
                     usernameValid: true,
-                })
+                }, () => true)
                 return true
             }
         }
@@ -156,12 +156,12 @@ class CreateAccountForm extends Component {
         if(!passwordLongEnough) {
             this.setState({
                 passwordValid: false
-            })
+            }, () => false)
             return false
         } else {
             this.setState({
                 passwordValid: true
-            })
+            }, () => true)
             return true
         }
     }
@@ -172,29 +172,26 @@ class CreateAccountForm extends Component {
         if(passwordsMatch) {
             this.setState({
                 confirmPasswordValid: true
-            })
+            }, () => true)
             return true
         } else {
             this.setState({
                 confirmPasswordValid: false
-            })
+            }, () => false)
             return false
         }
     }
 
     validateForm() {
-        // this.checkIfUsernameIsAvailable()
-        // this.validatePassword()
-        // this.validateConfirmPassword()
-        // // only reason these are getting ran first is because
-        // // in the form valid variable below, if username fails,
-        // // the next functions don't run and therefor don't
-        // // alert the user of all the incorrect fields
-        
-        const formValid = this.checkIfUsernameIsAvailable() &&
-                          this.validatePassword() &&
-                          this.validateConfirmPassword()
+        this.checkIfUsernameIsAvailable()
+        this.validatePassword()
+        this.validateConfirmPassword()
 
+        const formValid = 
+            this.checkIfUsernameIsAvailable() &&
+            this.validatePassword() &&
+            this.validateConfirmPassword()
+        
         if(formValid) {
             return true
         }
@@ -273,6 +270,7 @@ const ErrorMessage = styled.p`
     font-weight: 400;
     color: #d01a1a;
     display: ${({ valid }) => valid ? "none" : "block" };
+    margin: 0 !important;
 `
 
 export default CreateAccountForm
