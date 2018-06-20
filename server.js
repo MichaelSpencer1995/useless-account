@@ -12,8 +12,8 @@ let users
 mongoose.Promise = global.Promise
 
 // Connect to db before tests run
-// mongoose.connect('mongodb://localhost/testaroo')
-mongoose.connect(`mongodb://${ process.env.MONGODBUSER }:${ process.env.MONGODBPASS }@ds255320.mlab.com:55320/useless_account`)
+mongoose.connect('mongodb://localhost/testaroo')
+// mongoose.connect(`mongodb://${ process.env.MONGODBUSER }:${ process.env.MONGODBPASS }@ds255320.mlab.com:55320/useless_account`)
 
 mongoose.connection.once('open', () => {
     console.log('connection made!')

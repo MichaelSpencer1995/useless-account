@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Account from './account'
+import switchColors from '../constants/switch-colors'
 
 class AccountsListComponent extends Component {
     render() {
@@ -12,45 +13,18 @@ class AccountsListComponent extends Component {
             }
             
             let cardColor, borderColor, primaryColor, secondaryColor
+            let colorsToSwitch = [cardColor, borderColor, primaryColor, secondaryColor]
 
-            switch(account.theme) {
-                case 'light':
-                cardColor = '#f7f7f7'
-                borderColor = '#cccccc'
-                primaryColor = '#505050'
-                secondaryColor = '#939fa5'
-                      break
-              
-              case 'dark':
-                  cardColor = '#2d262d'
-                  borderColor = '#9093ff'
-                  primaryColor = '#e0e0e0'
-                  secondaryColor = '#686790'
-                      break
-      
-              case 'winter':
-                  cardColor = '#d8d8d8'
-                  borderColor = '#90c5c0'
-                  primaryColor = '#403d3d'
-                  secondaryColor = '#007380'
-                      break
-      
-              case 'fall':
-                  cardColor = '#ff8338'
-                  borderColor = '#F44336'
-                  primaryColor = '#803c00'
-                  secondaryColor = '#ffde5e'
-                      break
-            }
+            switchColors(colorsToSwitch, account.theme)
 
             return (
                 <Account
                     username = { account.username }
                     motto = { account.motto }
-                    cardColor = { cardColor } 
-                    borderColor = { borderColor }
-                    primaryColor = { primaryColor }
-                    secondaryColor = { secondaryColor }/>
+                    cardColor = { colorsToSwitch[0] } 
+                    borderColor = { colorsToSwitch[1] }
+                    primaryColor = { colorsToSwitch[2] }
+                    secondaryColor = { colorsToSwitch[3] } />
             )
         })
 

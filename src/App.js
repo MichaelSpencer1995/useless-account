@@ -6,6 +6,8 @@ import AccountsList from './components/accounts_list'
 import Account from './components/account'
 import styled from 'styled-components'
 import Loader from 'react-loader-spinner'
+import switchColors from './constants/switch-colors'
+
 let users
 
 class App extends Component {
@@ -46,6 +48,7 @@ class App extends Component {
 
   render() {
     let cardColor, borderColor, primaryColor, secondaryColor
+    let colorsToSwitch = [cardColor, borderColor, primaryColor, secondaryColor]
     
     if(this.state.loginView) {
       return (
@@ -94,36 +97,9 @@ class App extends Component {
         </Container>
       )
     }
+
     if(this.state.accountsView) {
-      switch(this.state.loggedInUserCridentials.theme) {
-        case 'light':
-          cardColor = '#f7f7f7'
-          borderColor = '#cccccc'
-          primaryColor = '#505050'
-          secondaryColor = '#939fa5'
-                break
-        
-        case 'dark':
-            cardColor = '#2d262d'
-            borderColor = '#9093ff'
-            primaryColor = '#e0e0e0'
-            secondaryColor = '#686790'
-                break
-
-        case 'winter':
-            cardColor = '#d8d8d8'
-            borderColor = '#90c5c0'
-            primaryColor = '#403d3d'
-            secondaryColor = '#007380'
-                break
-
-        case 'fall':
-            cardColor = '#ff8338'
-            borderColor = '#F44336'
-            primaryColor = '#803c00'
-            secondaryColor = '#ffde5e'
-                break
-      }
+      switchColors(colorsToSwitch, this.state.loggedInUserCridentials.theme)
 
       return (
         <Container>
@@ -134,10 +110,10 @@ class App extends Component {
                 usersAccount
                 username = { this.state.loggedInUserCridentials.username }
                 motto = { this.state.loggedInUserCridentials.motto }
-                cardColor = { cardColor } 
-                borderColor = { borderColor }
-                primaryColor = { primaryColor }
-                secondaryColor = { secondaryColor }/>
+                cardColor = { colorsToSwitch[0] } 
+                borderColor = { colorsToSwitch[1] }
+                primaryColor = { colorsToSwitch[2] }
+                secondaryColor = { colorsToSwitch[3] }/>
             </MyAccount>
 
             <AccountsList
@@ -150,6 +126,7 @@ class App extends Component {
         </Container>
       )
     }
+
     if(this.state.loadingView) {
       return (
         <Container>
